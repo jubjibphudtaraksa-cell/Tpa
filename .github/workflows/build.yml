@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: unzip -o SimpleTPA.zip
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
