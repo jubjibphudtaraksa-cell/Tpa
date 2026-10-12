@@ -8,13 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
           cache: maven
+          cache-dependency-path: SimpleTPA/pom.xml
       - run: mvn --batch-mode clean package
+        working-directory: SimpleTPA
       - uses: actions/upload-artifact@v4
         with:
           name: SimpleTPA
-          path: target/SimpleTPA-1.0.jar
+          path: SimpleTPA/target/SimpleTPA-1.0.jar
