@@ -1,0 +1,23 @@
+name: Build SmpBot
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: unzip -o SmpBot-source.zip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: SmpBot/pom.xml
+      - run: mvn --batch-mode clean package
+        working-directory: SmpBot
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SmpBot
+          path: SmpBot/target/SmpBot.jar
