@@ -1,0 +1,23 @@
+name: Build SeiHubPlugin
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: unzip -o SeiHubPlugin-project.zip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: seihub/pom.xml
+      - run: mvn --batch-mode clean package
+        working-directory: seihub
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SeiHubPlugin
+          path: seihub/target/SeiHubPlugin-1.0.0.jar
