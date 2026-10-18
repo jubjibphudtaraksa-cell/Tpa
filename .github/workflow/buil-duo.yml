@@ -1,0 +1,23 @@
+name: Build FiatDuel
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: unzip -o FiatDuel.zip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: FiatDuel/pom.xml
+      - run: mvn --batch-mode clean package
+        working-directory: FiatDuel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FiatDuel
+          path: FiatDuel/target/FiatDuel-1.0.0.jar
