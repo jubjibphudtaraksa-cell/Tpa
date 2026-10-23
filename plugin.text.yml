@@ -1,0 +1,98 @@
+name: KapomCore
+version: 1.4.0
+main: com.kapom.core.KapomCore
+api-version: '1.21'
+softdepend: [Multiverse-Core, KitDuel, KapomUI]
+description: KAPOM economy, shop, homes, tpa, rtp, coinflip, xo (world / nether / the end only)
+commands:
+  balance:
+    description: ดูยอดเงิน
+    aliases: [bal, money]
+    usage: /balance [ผู้เล่น]
+  pay:
+    description: โอนเงิน
+    usage: /pay <ผู้เล่น> <จำนวน>
+  baltop:
+    description: อันดับเศรษฐี
+    aliases: [balancetop]
+  eco:
+    description: แอดมินจัดการเงิน
+    usage: /eco <give|take|set> <ผู้เล่น> <จำนวน>
+  sethome:
+    description: ตั้งบ้าน
+    usage: /sethome [ชื่อ]
+  home:
+    description: วาร์ปกลับบ้าน
+    usage: /home [ชื่อ]
+  delhome:
+    description: ลบบ้าน
+    aliases: [rmhome]
+    usage: /delhome <ชื่อ>
+  homes:
+    description: เมนูบ้าน
+  tpa:
+    description: ขอวาร์ปไปหาผู้เล่น
+    usage: /tpa <ผู้เล่น>
+  tpahere:
+    description: ขอให้ผู้เล่นวาร์ปมาหาเรา
+    usage: /tpahere <ผู้เล่น>
+  tpaccept:
+    description: ยอมรับคำขอวาร์ป
+    aliases: [tpyes]
+  tpdeny:
+    description: ปฏิเสธคำขอวาร์ป
+    aliases: [tpno]
+  tpcancel:
+    description: ยกเลิกคำขอวาร์ปที่ส่งไป
+  rtp:
+    description: สุ่มวาร์ป
+    aliases: [wild, randomtp]
+  shop:
+    description: ร้านค้า
+  shopadmin:
+    description: แก้ไขร้านค้า (แอดมิน)
+    aliases: [shopedit]
+  cf:
+    description: Coinflip
+    aliases: [coinflip]
+    usage: /cf [จำนวน] [heads|tails]
+  xo:
+    description: เล่น XO เดิมพัน
+    aliases: [tictactoe]
+    usage: /xo <ผู้เล่น> [เดิมพัน]
+  sell:
+    description: ขายของ (รับซื้อทุกไอเทม)
+  ah:
+    description: ตลาดผู้เล่น (Auction House)
+    aliases: [auction]
+    usage: /ah | /ah sell <จำนวน> <ราคา>
+  order:
+    description: ประกาศรับซื้อของ
+    aliases: [orders]
+    usage: /order | /order create <จำนวน> <ราคาต่อชิ้น>
+  ruby:
+    description: ดู/จัดการยอด Ruby
+    usage: /ruby [ผู้เล่น] | /ruby <give|take|set> <ผู้เล่น> <จำนวน>
+  shopruby:
+    description: ร้านค้า Ruby
+  shoprubyadmin:
+    description: แก้ไขร้านค้า Ruby (แอดมิน)
+    aliases: [shoprubyedit]
+permissions:
+  kapom.admin:
+    default: op
+  kapom.shop.admin:
+    default: op
+  kapom.world.bypass:
+    description: ใช้คำสั่งได้ทุกโลก
+    default: op
+  kapom.tp.bypass:
+    description: วาร์ปทันที ไม่ต้องรอนับถอยหลัง (ไม่ให้ใครโดยปริยาย แม้เป็น OP)
+    default: false
+  kapom.rtp.bypass:
+    description: ไม่มีคูลดาวน์ RTP
+    default: op
+  kapom.homes.unlimited:
+    default: op
+  kapom.balance.others:
+    default: true

@@ -1,0 +1,69 @@
+# ============================================================
+#  KapomCore  -  เงิน / ร้านค้า / บ้าน / TPA / RTP / Coinflip / XO
+#  ข้อความทั้งหมดแก้ได้ที่ messages.yml
+#  ร้านค้า: OP พิมพ์ /shopadmin แล้วตั้งของ+ราคาในเมนูได้เลย
+# ============================================================
+
+currency-symbol: "$"
+start-balance: 1000
+
+# ปลั๊กอินนี้ใช้ได้เฉพาะโลกเหล่านี้ (โลกอื่นคำสั่งจะไม่ขึ้นและใช้ไม่ได้)
+worlds:
+  enabled: ["world", "lobby"]
+  rtp: ["world"]           # /rtp สุ่มวาร์ปได้เฉพาะโลกนี้ (ใช้จาก lobby ก็ไปโลก world)
+
+teleport:
+  warmup-seconds: 5        # วาร์ปทุกแบบ (home / tpa / rtp) ต้องยืนนิ่งนับถอยหลัง 5 วินาที (ขยับ = ยกเลิก)
+
+pay:
+  min: 1
+  tax-percent: 0
+
+homes:
+  # จำนวนบ้านตามยศ LuckPerms (group.vip / group.premium / group.admin = OP ได้ 12)
+  limits:
+    member: 4
+    vip: 8
+    premium: 12
+
+ranks:
+  vip:                     # LuckPerms group: vip
+    income: 100000         # ได้เงินทุก 2 ชั่วโมงที่ออนไลน์
+  premium:                 # LuckPerms group: premium
+    income: 500000
+  # LuckPerms group: admin = ได้ OP อัตโนมัติ (OP ปลดล็อกทุกอย่าง)
+
+income:
+  interval-minutes: 120    # ทุกกี่นาทีที่ออนไลน์
+
+tpa:
+  expire-seconds: 60
+
+rtp:
+  gui: true                # มีหลายโลกให้เลือก = เปิดเมนู
+  min-radius: 500
+  max-radius: 7500         # /rtp ไปไกลสุด 7500 บล็อก (โค้ดจำกัดไม่เกินนี้)
+  cooldown-seconds: 60
+  world-names: {}          # ชื่อที่แสดงในเมนู เช่น  world: "Overworld"
+
+coinflip:                  # ลงเดิมพันได้ไม่จำกัดจำนวน/ไม่จำกัดยอด (ตามเงินที่มี)
+  min-bet: 1
+  tax-percent: 5
+  broadcast-min: 1000000   # ชนะ >= ค่านี้จะประกาศทั้งเซิร์ฟ
+
+xo:
+  min-bet: 0
+  tax-percent: 5
+  invite-seconds: 30
+  turn-seconds: 30
+
+ah:
+  tax-percent: 5           # ภาษีที่หักจากผู้ขายเมื่อขายสำเร็จ
+  max-listings: 10         # ลงขายได้สูงสุดต่อคน
+
+order:
+  max-orders: 10           # order ที่เปิดพร้อมกันได้ต่อคน
+
+# ราคารับซื้อ /sell: ขายได้เกือบทุกไอเทมในเกม ราคาต่อชิ้นไม่เกิน 20000 ปรับเองได้ เช่น
+# sell-prices:
+#   DIAMOND: 350
