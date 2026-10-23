@@ -1,0 +1,23 @@
+name: Build KapomMenu
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: unzip -o KapomMenu.zip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: KapomMenu/pom.xml
+      - run: mvn --batch-mode clean package
+        working-directory: KapomMenu
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KapomMenu
+          path: KapomMenu/target/KapomMenu-1.0.0.jar
