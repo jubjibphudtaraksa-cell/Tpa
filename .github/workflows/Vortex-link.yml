@@ -1,4 +1,4 @@
-name: Build VortexLink By Fiatx2
+name: Build KapomLink
 on:
   workflow_dispatch:
 permissions:
@@ -14,10 +14,10 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          cache-dependency-path: VortexLink-1.1.0/pom.xml
+          cache-dependency-path: KapomLink-1.1.0/pom.xml
       - run: mvn --batch-mode clean package
-        working-directory: VortexLink-1.1.0
+        working-directory: KapomLink-1.1.0
       - uses: actions/upload-artifact@v4
         with:
-          name: VortexLink
-          path: VortexLink-1.1.0/target/VortexLink-1.1.0.jar
+          name: KapomLink
+          path: KapomLink-1.1.0/target/KapomLink-1.1.0.jar
