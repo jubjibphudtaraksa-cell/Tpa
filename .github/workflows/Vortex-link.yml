@@ -9,15 +9,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -o KapomLink-1.1.0-VortexStore.zip
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
           cache: maven
-          cache-dependency-path: VortexLink-1.1.0/pom.xml
+          cache-dependency-path: KapomLink-1.1.0/pom.xml
       - run: mvn --batch-mode clean package
-        working-directory: VortexLink-1.1.0
+        working-directory: KapomLink-1.1.0
+      - run: cp target/KapomLink-1.1.0.jar target/VortexLink-1.1.0.jar
+        working-directory: KapomLink-1.1.0
       - uses: actions/upload-artifact@v4
         with:
           name: VortexLink
-          path: VortexLink-1.1.0/target/VortexLink-1.1.0.jar
+          path: KapomLink-1.1.0/target/VortexLink-1.1.0.jar
