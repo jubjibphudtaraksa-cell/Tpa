@@ -35,13 +35,20 @@ jobs:
           export/android/shutdown_adb_on_exit = true
           EOT
 
+      - name: หาโฟลเดอร์โปรเจกต์ (project.godot)
+        run: |
+          P=$(find . -name project.godot -not -path "./.git/*" | head -1)
+          if [ -z "$P" ]; then echo "ไม่พบ project.godot ใน repo - ตรวจว่าอัปโหลดไฟล์ครบ"; ls -R | head -50; exit 1; fi
+          echo "PROJECT_DIR=$(dirname "$P")" >> $GITHUB_ENV
+          echo "พบโปรเจกต์ที่: $(dirname "$P")"
+
       - name: Import โปรเจกต์
-        run: godot --headless --import || true
+        run: godot --headless --path "$PROJECT_DIR" --import || true
 
       - name: Export APK
         run: |
-          mkdir -p build
-          godot --headless --export-debug "Android" build/arena_strike.apk
+          mkdir -p "$GITHUB_WORKSPACE/build"
+          godot --headless --path "$PROJECT_DIR" --export-debug "Android" "$GITHUB_WORKSPACE/build/arena_strike.apk"
 
       - uses: actions/upload-artifact@v4
         with:
